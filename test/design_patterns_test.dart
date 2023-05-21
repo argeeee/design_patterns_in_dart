@@ -5,6 +5,7 @@ import 'package:design_patterns/creational/builder/builders.dart';
 import 'package:design_patterns/creational/builder/director.dart';
 import 'package:design_patterns/creational/builder/models.dart';
 import 'package:design_patterns/creational/factory_method/factory_method.dart';
+import 'package:design_patterns/creational/prototype/shape_utils.dart';
 import 'package:test/test.dart';
 
 void main() {
@@ -59,6 +60,19 @@ void main() {
     // Use the NoLogger
     Logger noLogger = factory.createLogger(LoggingProvider.noLogging);
     noLogger.log('This will not be logged.');
+
+    // Just to mark the test as passed
+    expect(0, 0);
+  });
+
+  test('Prototype', () {
+    ShapeCache.loadCache();
+
+    final circle = ShapeCache.getShape('circle');
+    circle?.draw();
+
+    final rectangle = ShapeCache.getShape('rectangle');
+    rectangle?.draw();
 
     // Just to mark the test as passed
     expect(0, 0);
