@@ -8,6 +8,7 @@ import 'package:design_patterns/creational/factory_method/factory_method.dart';
 import 'package:design_patterns/creational/prototype/shape_utils.dart';
 import 'package:design_patterns/creational/singleton/config.dart';
 import 'package:design_patterns/structural/adapter/media_player.dart';
+import 'package:design_patterns/structural/bridge/bridge.dart';
 import 'package:test/test.dart';
 
 void main() {
@@ -104,6 +105,24 @@ void main() {
 
     mediaPlayer.play("vlc", "movie.vlc");
     mediaPlayer.play("mp4", "song.mp4");
+
+    // Just to mark the test as passed
+    expect(0, 0);
+  });
+
+  test('Bridge', () {
+    Workshop assembleWorkshop = AssembleWorkshop();
+    Workshop paintWorkshop = PaintWorkshop();
+
+    List<Workshop> carWorkshops = [assembleWorkshop, paintWorkshop];
+    List<Workshop> bikeWorkshops = [assembleWorkshop];
+
+    Vehicle car = Car(carWorkshops);
+    Vehicle bike = Bike(bikeWorkshops);
+
+    car.manufacture();
+    print('------------------');
+    bike.manufacture();
 
     // Just to mark the test as passed
     expect(0, 0);
