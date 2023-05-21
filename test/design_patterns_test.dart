@@ -9,6 +9,7 @@ import 'package:design_patterns/creational/prototype/shape_utils.dart';
 import 'package:design_patterns/creational/singleton/config.dart';
 import 'package:design_patterns/structural/adapter/media_player.dart';
 import 'package:design_patterns/structural/bridge/bridge.dart';
+import 'package:design_patterns/structural/composite/composite.dart';
 import 'package:test/test.dart';
 
 void main() {
@@ -123,6 +124,24 @@ void main() {
     car.manufacture();
     print('------------------');
     bike.manufacture();
+
+    // Just to mark the test as passed
+    expect(0, 0);
+  });
+
+  test('Composite', () {
+    File file1 = File("file1.txt");
+    File file2 = File("file2.txt");
+    Directory directory1 = Directory("directory1");
+    directory1.addComponent(file1);
+    directory1.addComponent(file2);
+
+    File file3 = File("file3.txt");
+    Directory directory2 = Directory("directory2");
+    directory2.addComponent(file3);
+    directory2.addComponent(directory1);
+
+    directory2.display();
 
     // Just to mark the test as passed
     expect(0, 0);
