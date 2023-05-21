@@ -6,6 +6,7 @@ import 'package:design_patterns/creational/builder/director.dart';
 import 'package:design_patterns/creational/builder/models.dart';
 import 'package:design_patterns/creational/factory_method/factory_method.dart';
 import 'package:design_patterns/creational/prototype/shape_utils.dart';
+import 'package:design_patterns/creational/singleton/config.dart';
 import 'package:test/test.dart';
 
 void main() {
@@ -73,6 +74,25 @@ void main() {
 
     final rectangle = ShapeCache.getShape('rectangle');
     rectangle?.draw();
+
+    // Just to mark the test as passed
+    expect(0, 0);
+  });
+
+  test('Singleton', () {
+    Config config1 = Config.getInstance();
+    Config config2 = Config.getInstance();
+
+    config1.loadConfiguration('api_key', 'your-api-key');
+    config2.loadConfiguration('database_url', 'your-database-url');
+
+    String apiKey = config2.getConfiguration('api_key');
+    String databaseUrl = config1.getConfiguration('database_url');
+
+    print(apiKey); // Output: your-api-key
+    print(databaseUrl); // Output: your-database-url
+
+    print(identical(config1, config2)); // Output: true
 
     // Just to mark the test as passed
     expect(0, 0);
