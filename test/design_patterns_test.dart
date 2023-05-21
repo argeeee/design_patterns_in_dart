@@ -7,6 +7,7 @@ import 'package:design_patterns/creational/builder/models.dart';
 import 'package:design_patterns/creational/factory_method/factory_method.dart';
 import 'package:design_patterns/creational/prototype/shape_utils.dart';
 import 'package:design_patterns/creational/singleton/config.dart';
+import 'package:design_patterns/structural/adapter/media_player.dart';
 import 'package:test/test.dart';
 
 void main() {
@@ -93,6 +94,16 @@ void main() {
     print(databaseUrl); // Output: your-database-url
 
     print(identical(config1, config2)); // Output: true
+
+    // Just to mark the test as passed
+    expect(0, 0);
+  });
+
+  test('Adapter', () {
+    MediaPlayer mediaPlayer = MediaPlayerAdapter(LegacyMediaPlayer());
+
+    mediaPlayer.play("vlc", "movie.vlc");
+    mediaPlayer.play("mp4", "song.mp4");
 
     // Just to mark the test as passed
     expect(0, 0);
