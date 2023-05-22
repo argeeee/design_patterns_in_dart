@@ -13,6 +13,7 @@ import 'package:design_patterns/structural/composite/composite.dart';
 import 'package:design_patterns/structural/decorator/decorator.dart';
 import 'package:design_patterns/structural/facade/facade.dart';
 import 'package:design_patterns/structural/flyweight/flyweight.dart';
+import 'package:design_patterns/structural/proxy/proxy.dart';
 import 'package:test/test.dart';
 
 void main() {
@@ -210,6 +211,22 @@ void main() {
     // Reusing existing enemies
     final orc1Copy = enemyFactory.getEnemy('Orc', 'Axe');
     orc1Copy.display(250, 350);
+
+    // Just to mark the test as passed
+    expect(0, 0);
+  });
+
+  test('Proxy', () {
+    final image1 = ImageProxy("image1.jpg");
+    final image2 = ImageProxy("image2.jpg");
+
+    // Images are not loaded yet
+    image1.display();
+    image2.display();
+
+    // Images are loaded and displayed
+    image1.display();
+    image2.display();
 
     // Just to mark the test as passed
     expect(0, 0);
