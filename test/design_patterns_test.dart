@@ -10,6 +10,7 @@ import 'package:design_patterns/creational/singleton/config.dart';
 import 'package:design_patterns/structural/adapter/media_player.dart';
 import 'package:design_patterns/structural/bridge/bridge.dart';
 import 'package:design_patterns/structural/composite/composite.dart';
+import 'package:design_patterns/structural/decorator/decorator.dart';
 import 'package:test/test.dart';
 
 void main() {
@@ -142,6 +143,31 @@ void main() {
     directory2.addComponent(directory1);
 
     directory2.display();
+
+    // Just to mark the test as passed
+    expect(0, 0);
+  });
+
+  test('Decorator', () {
+    Coffee simpleCoffee = SimpleCoffee();
+    print(
+      "Simple Coffee - Cost: \$${simpleCoffee.getCost().toStringAsFixed(2)}, Description: ${simpleCoffee.getDescription()}",
+    );
+
+    Coffee milkCoffee = MilkDecorator(simpleCoffee);
+    print(
+      "Coffee with Milk - Cost: \$${milkCoffee.getCost().toStringAsFixed(2)}, Description: ${milkCoffee.getDescription()}",
+    );
+
+    Coffee sugarCoffee = SugarDecorator(simpleCoffee);
+    print(
+      "Coffee with Sugar - Cost: \$${sugarCoffee.getCost().toStringAsFixed(2)}, Description: ${sugarCoffee.getDescription()}",
+    );
+
+    Coffee milkSugarCoffee = MilkDecorator(sugarCoffee);
+    print(
+      "Coffee with Milk and Sugar - Cost: \$${milkSugarCoffee.getCost().toStringAsFixed(2)}, Description: ${milkSugarCoffee.getDescription()}",
+    );
 
     // Just to mark the test as passed
     expect(0, 0);
