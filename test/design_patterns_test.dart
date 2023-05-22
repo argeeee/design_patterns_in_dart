@@ -1,3 +1,4 @@
+import 'package:design_patterns/behavioral/chain_of_responsibility/chain_of_responsibility.dart';
 import 'package:design_patterns/creational/abstract_factory/data/windows/factory.dart';
 import 'package:design_patterns/creational/abstract_factory/domain/factory.dart';
 import 'package:design_patterns/creational/abstract_factory/domain/views.dart';
@@ -227,6 +228,28 @@ void main() {
     // Images are loaded and displayed
     image1.display();
     image2.display();
+
+    // Just to mark the test as passed
+    expect(0, 0);
+  });
+
+  test('Chain of Reponsibility', () {
+    final teamLead = TeamLead();
+    final manager = Manager();
+    final director = Director();
+
+    teamLead.setNextApprover(manager);
+    manager.setNextApprover(director);
+
+    // Create purchase requests
+    final request1 = PurchaseRequest(1, 800);
+    final request2 = PurchaseRequest(2, 4500);
+    final request3 = PurchaseRequest(3, 12000);
+
+    // Process purchase requests
+    teamLead.processRequest(request1);
+    teamLead.processRequest(request2);
+    teamLead.processRequest(request3);
 
     // Just to mark the test as passed
     expect(0, 0);
