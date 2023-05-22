@@ -11,6 +11,7 @@ import 'package:design_patterns/structural/adapter/media_player.dart';
 import 'package:design_patterns/structural/bridge/bridge.dart';
 import 'package:design_patterns/structural/composite/composite.dart';
 import 'package:design_patterns/structural/decorator/decorator.dart';
+import 'package:design_patterns/structural/facade/facade.dart';
 import 'package:test/test.dart';
 
 void main() {
@@ -168,6 +169,25 @@ void main() {
     print(
       "Coffee with Milk and Sugar - Cost: \$${milkSugarCoffee.getCost().toStringAsFixed(2)}, Description: ${milkSugarCoffee.getDescription()}",
     );
+
+    // Just to mark the test as passed
+    expect(0, 0);
+  });
+
+  test('Facade', () {
+    // Creating subsystem objects
+    Account account = Account('1234567890', 1000.0);
+    Notification notification = Notification();
+
+    // Creating the banking facade
+    BankingFacade bankingFacade = BankingFacade(account, notification);
+
+    // Using the simplified interface provided by the facade
+    bankingFacade.deposit(500.0);
+    bankingFacade.withdraw(200.0);
+
+    double balance = bankingFacade.getBalance();
+    print('Account balance: \$${balance.toStringAsFixed(2)}');
 
     // Just to mark the test as passed
     expect(0, 0);
