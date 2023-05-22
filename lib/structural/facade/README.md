@@ -29,3 +29,15 @@ Use the Facadepattern when
 - you want to provide a simple interface to a complexsubsystem. Subsystems often get more complex as they evolve. Most patterns, when applied, result in more and smaller classes. This makes the subsystem more reusable and easier to customize, but it also becomes harder to use for clients that don't need to customize it. A facade can provide a simple default view of the subsystem that is good enough for most clients. Only clients needing more customizability will need to look beyond the facade.
 - there aremany dependencies between clients and theimplementation classes of an abstraction.Introduce a facade to decouple the subsystem from clients and other subsystems, thereby promoting subsystem independence and portability.
 - you want to layer your subsystems. Use a facade to define an entry point to each subsystem level. If subsystems are dependent, then you can simplify the dependencies between them by making them communicate with each other solely through their facades.
+
+## Collaborations
+- Clients communicatewith the subsystem by sending requeststoFacade,which forwards themto the appropriate subsystem object(s). Although the subsystem objects perform the actualwork, the facade may have to do work ofits own to translate its interface to subsystem interfaces.
+- Clients that use the facade don't have to access its subsystem objects directly.
+
+## Consequences
+The Facade pattern offers the following benefits:
+1. It shields clients from subsystem components, thereby reducing the number of objects that clients deal with and making the subsystem easier to use.
+2. It promotes weak coupling between the subsystem and its clients. Often the components in a subsystem are strongly coupled. Weak coupling lets you vary the components of the subsystem without affecting its clients. Facades help layer a system and the dependencies between objects. They can eliminate complexor circulardependencies. This canbe an important consequence when the client and the subsystem are implemented independently. Reducing compilation dependencies is vital in large software systems.You want to save time by minimizing recompilation when subsystem classes change. Reducing compilation dependencies with facades can limit the re-
+compilation needed for a small change in an important subsystem. A facade can also simplify porting systems to other platforms, because it's less likely that building one subsystem requires building all others.
+3. It doesn't prevent applicationsfrom using subsystem classes if they need to. Thus you can choose between ease of use and generality.
+
