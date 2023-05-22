@@ -1,5 +1,6 @@
 import 'package:design_patterns/behavioral/chain_of_responsibility/chain_of_responsibility.dart';
 import 'package:design_patterns/behavioral/command/command.dart';
+import 'package:design_patterns/behavioral/interpreter/interpreter.dart';
 import 'package:design_patterns/creational/abstract_factory/data/windows/factory.dart';
 import 'package:design_patterns/creational/abstract_factory/domain/factory.dart';
 import 'package:design_patterns/creational/abstract_factory/domain/views.dart';
@@ -274,6 +275,31 @@ void main() {
     // Undo the remove operation
     removeCommand.undo();
     textEditor.displayText(); // Current text: "Hello, "
+
+    // Just to mark the test as passed
+    expect(0, 0);
+  });
+
+  test('Interpreter', () {
+    // Creating the expression tree for: 5 + (4 - 2) * 3 / 2
+
+    // Terminal expressions
+    final num5 = NumberExpression(5);
+    final num4 = NumberExpression(4);
+    final num2 = NumberExpression(2);
+    final num3 = NumberExpression(3);
+
+    // Sub-expressions
+    final subtraction = SubtractionExpression(num4, num2);
+    final multiplication = MultiplicationExpression(subtraction, num3);
+    final division = DivisionExpression(multiplication, num2);
+
+    // Main expression
+    final expression = AdditionExpression(num5, division);
+
+    // Evaluate the expression
+    final result = expression.interpret();
+    print('Result: $result'); // Output: Result: 8
 
     // Just to mark the test as passed
     expect(0, 0);
