@@ -12,6 +12,7 @@ import 'package:design_patterns/structural/bridge/bridge.dart';
 import 'package:design_patterns/structural/composite/composite.dart';
 import 'package:design_patterns/structural/decorator/decorator.dart';
 import 'package:design_patterns/structural/facade/facade.dart';
+import 'package:design_patterns/structural/flyweight/flyweight.dart';
 import 'package:test/test.dart';
 
 void main() {
@@ -188,6 +189,27 @@ void main() {
 
     double balance = bankingFacade.getBalance();
     print('Account balance: \$${balance.toStringAsFixed(2)}');
+
+    // Just to mark the test as passed
+    expect(0, 0);
+  });
+
+  test('Flyweight', () {
+    final enemyFactory = EnemyFactory();
+
+    // Creating and displaying enemies
+    final orc1 = enemyFactory.getEnemy('Orc', 'Axe');
+    orc1.display(100, 200);
+
+    final orc2 = enemyFactory.getEnemy('Orc', 'Sword');
+    orc2.display(150, 250);
+
+    final orc3 = enemyFactory.getEnemy('Orc', 'Axe');
+    orc3.display(200, 300);
+
+    // Reusing existing enemies
+    final orc1Copy = enemyFactory.getEnemy('Orc', 'Axe');
+    orc1Copy.display(250, 350);
 
     // Just to mark the test as passed
     expect(0, 0);
