@@ -1,4 +1,5 @@
 import 'package:design_patterns/behavioral/chain_of_responsibility/chain_of_responsibility.dart';
+import 'package:design_patterns/behavioral/command/command.dart';
 import 'package:design_patterns/creational/abstract_factory/data/windows/factory.dart';
 import 'package:design_patterns/creational/abstract_factory/domain/factory.dart';
 import 'package:design_patterns/creational/abstract_factory/domain/views.dart';
@@ -250,6 +251,29 @@ void main() {
     teamLead.processRequest(request1);
     teamLead.processRequest(request2);
     teamLead.processRequest(request3);
+
+    // Just to mark the test as passed
+    expect(0, 0);
+  });
+
+  test('Command', () {
+    final textEditor = TextEditor();
+    final invoker = TextEditorInvoker();
+
+    // Add text command
+    final addCommand = AddTextCommand(textEditor, 'Hello,');
+    invoker.setCommand(addCommand);
+    invoker.executeCommand(); // Adds "Hello, "
+
+    // Remove last character command
+    final removeCommand = RemoveLastCharacterCommand(textEditor);
+    invoker.setCommand(removeCommand);
+    invoker.executeCommand(); // Removes the comma (',')
+    textEditor.displayText(); // Current text: "Hello"
+
+    // Undo the remove operation
+    removeCommand.undo();
+    textEditor.displayText(); // Current text: "Hello, "
 
     // Just to mark the test as passed
     expect(0, 0);
