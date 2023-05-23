@@ -2,6 +2,7 @@ import 'package:design_patterns/behavioral/chain_of_responsibility/chain_of_resp
 import 'package:design_patterns/behavioral/command/command.dart';
 import 'package:design_patterns/behavioral/interpreter/interpreter.dart';
 import 'package:design_patterns/behavioral/iterator/iterator.dart';
+import 'package:design_patterns/behavioral/mediator/mediator.dart';
 import 'package:design_patterns/creational/abstract_factory/data/windows/factory.dart';
 import 'package:design_patterns/creational/abstract_factory/domain/factory.dart';
 import 'package:design_patterns/creational/abstract_factory/domain/views.dart';
@@ -324,6 +325,29 @@ void main() {
       final book = iterator.next();
       print(book.title);
     }
+
+    // Just to mark the test as passed
+    expect(0, 0);
+  });
+
+  test('Mediator', () {
+    final chatRoom = ChatRoom();
+
+    final user1 = User('John', chatRoom);
+    final user2 = User('Alice', chatRoom);
+    final user3 = User('Bob', chatRoom);
+
+    chatRoom.addUser(user1);
+    chatRoom.addUser(user2);
+    chatRoom.addUser(user3);
+
+    user1.sendMessage(
+      'Hello everyone!',
+    );
+    // Output: Alice received message: Hello everyone!
+    //         Bob received message: Hello everyone!
+
+    user2.sendMessage('Hi John!'); // Output: John received message: Hi John!
 
     // Just to mark the test as passed
     expect(0, 0);
