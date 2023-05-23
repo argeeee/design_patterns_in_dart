@@ -63,6 +63,3 @@ class DivisionExpression implements Expression {
     return left.interpret() ~/ right.interpret();
   }
 }
-
-// Client
-void main() {}

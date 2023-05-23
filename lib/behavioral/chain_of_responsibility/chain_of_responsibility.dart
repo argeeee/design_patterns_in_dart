@@ -54,6 +54,3 @@ class PurchaseRequest {
 
   PurchaseRequest(this.requestNumber, this.amount);
 }
-
-// Client code
-void main() {}

@@ -40,14 +40,16 @@ class BankingFacade {
 
   void deposit(double amount) {
     account.deposit(amount);
-    notification
-        .sendNotification('Amount \$${amount.toStringAsFixed(2)} deposited');
+    notification.sendNotification(
+      'Amount \$${amount.toStringAsFixed(2)} deposited',
+    );
   }
 
   void withdraw(double amount) {
     account.withdraw(amount);
-    notification
-        .sendNotification('Amount \$${amount.toStringAsFixed(2)} withdrawn');
+    notification.sendNotification(
+      'Amount \$${amount.toStringAsFixed(2)} withdrawn',
+    );
   }
 
   double getBalance() {
