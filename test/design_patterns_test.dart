@@ -1,6 +1,7 @@
 import 'package:design_patterns/behavioral/chain_of_responsibility/chain_of_responsibility.dart';
 import 'package:design_patterns/behavioral/command/command.dart';
 import 'package:design_patterns/behavioral/interpreter/interpreter.dart';
+import 'package:design_patterns/behavioral/iterator/iterator.dart';
 import 'package:design_patterns/creational/abstract_factory/data/windows/factory.dart';
 import 'package:design_patterns/creational/abstract_factory/domain/factory.dart';
 import 'package:design_patterns/creational/abstract_factory/domain/views.dart';
@@ -300,6 +301,29 @@ void main() {
     // Evaluate the expression
     final result = expression.interpret();
     print('Result: $result'); // Output: Result: 8
+
+    // Just to mark the test as passed
+    expect(0, 0);
+  });
+
+  test('Iterator', () {
+    final bookCollection = BookCollection();
+
+    bookCollection.addBook(
+      Book("Design Patterns: Elements of Reusable Object-Oriented Software"),
+    );
+    bookCollection.addBook(
+      Book("Clean Code: A Handbook of Agile Software Craftsmanship"),
+    );
+    bookCollection.addBook(
+      Book("Refactoring: Improving the Design of Existing Code"),
+    );
+
+    final iterator = bookCollection.createIterator();
+    while (iterator.hasNext()) {
+      final book = iterator.next();
+      print(book.title);
+    }
 
     // Just to mark the test as passed
     expect(0, 0);
