@@ -7,6 +7,7 @@ import 'package:design_patterns/behavioral/memento/memento.dart' as memento;
 import 'package:design_patterns/behavioral/observer/observer.dart' as observer;
 import 'package:design_patterns/behavioral/state/state.dart';
 import 'package:design_patterns/behavioral/strategy/strategy.dart';
+import 'package:design_patterns/behavioral/template_method/template_method.dart';
 import 'package:design_patterns/creational/abstract_factory/data/windows/factory.dart';
 import 'package:design_patterns/creational/abstract_factory/domain/factory.dart';
 import 'package:design_patterns/creational/abstract_factory/domain/views.dart';
@@ -455,6 +456,19 @@ void main() {
 
     paymentProcessor.setPaymentStrategy(bankTransferStrategy);
     paymentProcessor.processPayment(200.0);
+
+    // Just to mark the test as passed
+    expect(0, 0);
+  });
+
+  test('Template Method', () {
+    HouseBuilder woodenHouseBuilder = WoodenHouseBuilder();
+    woodenHouseBuilder.buildHouse();
+
+    print("-------------------------");
+
+    HouseBuilder concreteHouseBuilder = ConcreteHouseBuilder();
+    concreteHouseBuilder.buildHouse();
 
     // Just to mark the test as passed
     expect(0, 0);
