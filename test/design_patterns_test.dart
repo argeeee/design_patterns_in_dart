@@ -5,6 +5,7 @@ import 'package:design_patterns/behavioral/iterator/iterator.dart';
 import 'package:design_patterns/behavioral/mediator/mediator.dart' as mediator;
 import 'package:design_patterns/behavioral/memento/memento.dart' as memento;
 import 'package:design_patterns/behavioral/observer/observer.dart' as observer;
+import 'package:design_patterns/behavioral/state/state.dart';
 import 'package:design_patterns/creational/abstract_factory/data/windows/factory.dart';
 import 'package:design_patterns/creational/abstract_factory/domain/factory.dart';
 import 'package:design_patterns/creational/abstract_factory/domain/views.dart';
@@ -408,6 +409,21 @@ void main() {
 
     // Send another message
     messagingApp.sendMessage('How are you doing?');
+    // Just to mark the test as passed
+    expect(0, 0);
+  });
+
+  test('State', () {
+    // Create the music player
+    final musicPlayer = MusicPlayer();
+
+    // Perform operations
+    musicPlayer.play();
+    musicPlayer.pause();
+    musicPlayer.play();
+    musicPlayer.stop();
+    musicPlayer.pause();
+
     // Just to mark the test as passed
     expect(0, 0);
   });
