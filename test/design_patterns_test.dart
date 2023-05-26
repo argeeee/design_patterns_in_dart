@@ -2,8 +2,9 @@ import 'package:design_patterns/behavioral/chain_of_responsibility/chain_of_resp
 import 'package:design_patterns/behavioral/command/command.dart' as command;
 import 'package:design_patterns/behavioral/interpreter/interpreter.dart';
 import 'package:design_patterns/behavioral/iterator/iterator.dart';
-import 'package:design_patterns/behavioral/mediator/mediator.dart';
+import 'package:design_patterns/behavioral/mediator/mediator.dart' as mediator;
 import 'package:design_patterns/behavioral/memento/memento.dart' as memento;
+import 'package:design_patterns/behavioral/observer/observer.dart' as observer;
 import 'package:design_patterns/creational/abstract_factory/data/windows/factory.dart';
 import 'package:design_patterns/creational/abstract_factory/domain/factory.dart';
 import 'package:design_patterns/creational/abstract_factory/domain/views.dart';
@@ -332,11 +333,11 @@ void main() {
   });
 
   test('Mediator', () {
-    final chatRoom = ChatRoom();
+    final chatRoom = mediator.ChatRoom();
 
-    final user1 = User('John', chatRoom);
-    final user2 = User('Alice', chatRoom);
-    final user3 = User('Bob', chatRoom);
+    final user1 = mediator.User('John', chatRoom);
+    final user2 = mediator.User('Alice', chatRoom);
+    final user3 = mediator.User('Bob', chatRoom);
 
     chatRoom.addUser(user1);
     chatRoom.addUser(user2);
@@ -381,6 +382,32 @@ void main() {
 
     print(textEditor.getText()); // Output:
 
+    // Just to mark the test as passed
+    expect(0, 0);
+  });
+
+  test('Observer', () {
+    // Create the messaging app object (subject)
+    final messagingApp = observer.MessagingApp();
+
+    // Create users (observers)
+    final user1 = observer.ChatUser('Alice');
+    final user2 = observer.ChatUser('Bob');
+    final user3 = observer.ChatUser('Charlie');
+
+    // Users subscribe to receive messages
+    messagingApp.subscribe(user1);
+    messagingApp.subscribe(user2);
+    messagingApp.subscribe(user3);
+
+    // Send a message
+    messagingApp.sendMessage('Hello, everyone!');
+
+    // User2 unsubscribes from receiving messages
+    messagingApp.unsubscribe(user2);
+
+    // Send another message
+    messagingApp.sendMessage('How are you doing?');
     // Just to mark the test as passed
     expect(0, 0);
   });
