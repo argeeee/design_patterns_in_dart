@@ -56,6 +56,3 @@ class BankingFacade {
     return account.getBalance();
   }
 }
-
-// Client code
-void main() {}

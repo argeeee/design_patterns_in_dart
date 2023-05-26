@@ -38,6 +38,3 @@ class User {
     print('$name received message: $message');
   }
 }
-
-// Client
-void main() {}

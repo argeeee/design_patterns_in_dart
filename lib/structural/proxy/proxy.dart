@@ -35,6 +35,3 @@ class ImageProxy implements Image {
     realImage!.display();
   }
 }
-
-// Client code
-void main() {}

@@ -32,6 +32,3 @@ class EnemyFactory {
     }
   }
 }
-
-// Client code
-void main() {}
