@@ -6,6 +6,7 @@ import 'package:design_patterns/behavioral/mediator/mediator.dart' as mediator;
 import 'package:design_patterns/behavioral/memento/memento.dart' as memento;
 import 'package:design_patterns/behavioral/observer/observer.dart' as observer;
 import 'package:design_patterns/behavioral/state/state.dart';
+import 'package:design_patterns/behavioral/strategy/strategy.dart';
 import 'package:design_patterns/creational/abstract_factory/data/windows/factory.dart';
 import 'package:design_patterns/creational/abstract_factory/domain/factory.dart';
 import 'package:design_patterns/creational/abstract_factory/domain/views.dart';
@@ -423,6 +424,37 @@ void main() {
     musicPlayer.play();
     musicPlayer.stop();
     musicPlayer.pause();
+
+    // Just to mark the test as passed
+    expect(0, 0);
+  });
+
+  test('Strategy', () {
+    // Create payment processor
+    final paymentProcessor = PaymentProcessor();
+
+    // Set different payment strategies
+    final creditCardStrategy = CreditCardPaymentStrategy(
+      '1234567890',
+      '123',
+    );
+    final paypalStrategy = PayPalPaymentStrategy(
+      'user@example.com',
+      'password',
+    );
+    final bankTransferStrategy = BankTransferPaymentStrategy(
+      '9876543210',
+    );
+
+    // Process payments using different strategies
+    paymentProcessor.setPaymentStrategy(creditCardStrategy);
+    paymentProcessor.processPayment(100.0);
+
+    paymentProcessor.setPaymentStrategy(paypalStrategy);
+    paymentProcessor.processPayment(50.0);
+
+    paymentProcessor.setPaymentStrategy(bankTransferStrategy);
+    paymentProcessor.processPayment(200.0);
 
     // Just to mark the test as passed
     expect(0, 0);
