@@ -1,8 +1,9 @@
 import 'package:design_patterns/behavioral/chain_of_responsibility/chain_of_responsibility.dart';
-import 'package:design_patterns/behavioral/command/command.dart';
+import 'package:design_patterns/behavioral/command/command.dart' as command;
 import 'package:design_patterns/behavioral/interpreter/interpreter.dart';
 import 'package:design_patterns/behavioral/iterator/iterator.dart';
 import 'package:design_patterns/behavioral/mediator/mediator.dart';
+import 'package:design_patterns/behavioral/memento/memento.dart' as memento;
 import 'package:design_patterns/creational/abstract_factory/data/windows/factory.dart';
 import 'package:design_patterns/creational/abstract_factory/domain/factory.dart';
 import 'package:design_patterns/creational/abstract_factory/domain/views.dart';
@@ -260,16 +261,16 @@ void main() {
   });
 
   test('Command', () {
-    final textEditor = TextEditor();
-    final invoker = TextEditorInvoker();
+    final textEditor = command.TextEditor();
+    final invoker = command.TextEditorInvoker();
 
     // Add text command
-    final addCommand = AddTextCommand(textEditor, 'Hello,');
+    final addCommand = command.AddTextCommand(textEditor, 'Hello,');
     invoker.setCommand(addCommand);
     invoker.executeCommand(); // Adds "Hello, "
 
     // Remove last character command
-    final removeCommand = RemoveLastCharacterCommand(textEditor);
+    final removeCommand = command.RemoveLastCharacterCommand(textEditor);
     invoker.setCommand(removeCommand);
     invoker.executeCommand(); // Removes the comma (',')
     textEditor.displayText(); // Current text: "Hello"
@@ -348,6 +349,37 @@ void main() {
     //         Bob received message: Hello everyone!
 
     user2.sendMessage('Hi John!'); // Output: John received message: Hi John!
+
+    // Just to mark the test as passed
+    expect(0, 0);
+  });
+
+  test('Memento', () {
+    final textEditor = memento.TextEditor('');
+    final history = memento.TextEditorHistory();
+
+    // Initial state
+    history.saveState(textEditor.save());
+
+    // User actions
+    textEditor.addText('Hello, ');
+    history.saveState(textEditor.save());
+
+    textEditor.addText('world!');
+    history.saveState(textEditor.save());
+
+    // Undo
+    textEditor.restore(history.undo());
+
+    print(textEditor.getText()); // Output: Hello,
+
+    textEditor.restore(history.undo());
+
+    print(textEditor.getText()); // Output:
+
+    textEditor.restore(history.undo());
+
+    print(textEditor.getText()); // Output:
 
     // Just to mark the test as passed
     expect(0, 0);
