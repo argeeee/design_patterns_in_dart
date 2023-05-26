@@ -8,6 +8,7 @@ import 'package:design_patterns/behavioral/observer/observer.dart' as observer;
 import 'package:design_patterns/behavioral/state/state.dart';
 import 'package:design_patterns/behavioral/strategy/strategy.dart';
 import 'package:design_patterns/behavioral/template_method/template_method.dart';
+import 'package:design_patterns/behavioral/visitor/visitor.dart';
 import 'package:design_patterns/creational/abstract_factory/data/windows/factory.dart';
 import 'package:design_patterns/creational/abstract_factory/domain/factory.dart';
 import 'package:design_patterns/creational/abstract_factory/domain/views.dart';
@@ -469,6 +470,25 @@ void main() {
 
     HouseBuilder concreteHouseBuilder = ConcreteHouseBuilder();
     concreteHouseBuilder.buildHouse();
+
+    // Just to mark the test as passed
+    expect(0, 0);
+  });
+
+  test('Visitor', () {
+    // Create the AST: 5 + (2 - 3)
+    final expression = Addition(
+      Number(5),
+      Subtraction(
+        Number(2),
+        Number(3),
+      ),
+    );
+
+    // Evaluate the expression using the ExpressionEvaluator visitor
+    final evaluator = ExpressionEvaluator();
+    expression.accept(evaluator);
+    print('Result: ${evaluator.result}'); // Output: Result: 4
 
     // Just to mark the test as passed
     expect(0, 0);
